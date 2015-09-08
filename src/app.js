@@ -20,16 +20,6 @@ catch (e) {
 }
 
 
-var nwWin = gui.Window.get();
-nwWin.cookies.getAll( {},
-    function(cookies) {
-      console.log('Attempting to remove '+cookies.length+' cookies...');
-      for (var i=0; i<cookies.length; i++) {
-        removeCookie(cookies[i]);
-      }
-    });
-win = gui.Window.open('https://backline.akariobl.com',{toolbar:false,frame:true, focus: true, show: false, width: 1100, height: 768});
-
 var platform = require('./components/platform');
 var updater = require('./components/updater');
 var menus = require('./components/menus');
@@ -41,6 +31,8 @@ var dispatcher = require('./components/dispatcher');
 if (platform.isWindows) {
   gui.App.createShortcut(process.env.APPDATA + "\\Microsoft\\Windows\\Start Menu\\Programs\\Backline.lnk");
 }
+
+win = gui.Window.open('https://backline.akariobl.com',{toolbar:false,frame:true, focus: true, show: false, width: 1100, height: 768});
 
 // Add dispatcher events
 dispatcher.addEventListener('win.alert', function(data) {
@@ -107,24 +99,5 @@ function rmdir(dir) {
     }
   }
   fs.rmdirSync(dir);
-}
-
-function removeCookie(cookie) {
-  var lurl = "http" + (cookie.secure ? "s" : "") + "://" + cookie.domain + cookie.path;
-    nwWin.cookies.remove({
-          url: lurl,
-          name: cookie.name
-        },
-      function(result) {
-        if (result) {
-          if (!result.name) {
-            result = result[0];
-          } // in devTools it looked like the result was an array
-          console.log('cookie remove callback: ' + result.name + ' ' +
-              result.url);
-        } else {
-          console.log('cookie removal failed');
-        }
-      });
 }
 

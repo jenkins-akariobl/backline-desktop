@@ -191,6 +191,9 @@ module.exports = {
       label: 'Quit Backline',
       click: function() {
         win.close(true);
+          gui = require('nw.gui');
+          win = gui.Window.get();
+          gui.App.quit();
       }
     }));
 
@@ -218,7 +221,7 @@ module.exports = {
     }
 
     var tray = new gui.Tray({
-      icon: 'images/icon_' + (platform.isOSX ? 'menubar.tiff' : 'tray.png')
+      icon: 'images/' + (platform.isOSX ? 'menubar.tiff' : 'icon.ico')
     });
 
     tray.on('click', function() {
