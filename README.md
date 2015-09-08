@@ -1,4 +1,4 @@
-# NW.js Starter
+# Backline NWJS
 
 [![Join the chat at https://gitter.im/Aluxian/nwjs-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Aluxian/nwjs-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/aluxian)

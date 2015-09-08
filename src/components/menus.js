@@ -221,7 +221,7 @@ module.exports = {
     }
 
     var tray = new gui.Tray({
-      icon: 'images/' + (platform.isOSX ? 'menubar.tiff' : 'icon.ico')
+      icon: 'images/icon_' + (platform.isOSX ? 'menubar.tiff' : 'tray.png')
     });
 
     tray.on('click', function() {

@@ -32,7 +32,18 @@ if (platform.isWindows) {
   gui.App.createShortcut(process.env.APPDATA + "\\Microsoft\\Windows\\Start Menu\\Programs\\Backline.lnk");
 }
 
-win = gui.Window.open('https://backline.akariobl.com',{toolbar:false,frame:true, focus: true, show: false, width: 1100, height: 768});
+// Open the Main Window
+win = gui.Window.open('https://backline.akariobl.com',
+    {   toolbar:false,
+        frame:true,
+        focus: true,
+        show: false,
+        title: "Backline",
+        icon: "images/icon.ico",
+        width: 1100,
+        height: 768
+    });
+
 
 // Add dispatcher events
 dispatcher.addEventListener('win.alert', function(data) {
