@@ -33,17 +33,19 @@ if (platform.isWindows) {
 }
 
 // Open the Main Window
-win = gui.Window.open('https://backline.akariobl.com',
+    mainwin = gui.Window.get();
+
+    win = gui.Window.open('https://backline.akariobl.com',
     {   toolbar:false,
         frame:true,
         focus: true,
-        show: false,
+        show: true,
+        show_in_taskbar: true,
         title: "Backline",
-        icon: "images/icon.ico",
+        icon: "images/icon_small.png",
         width: 1100,
         height: 768
     });
-
 
 // Add dispatcher events
 dispatcher.addEventListener('win.alert', function(data) {
@@ -53,6 +55,8 @@ dispatcher.addEventListener('win.alert', function(data) {
 dispatcher.addEventListener('win.confirm', function(data) {
   data.callback(data.win.window.confirm(data.message));
 });
+
+
 
 // Window state
 windowBehaviour.restoreWindowState(win);
@@ -64,10 +68,7 @@ if (settings.checkUpdateOnLaunch) {
 }
 
 // Run as menu bar app
-if (settings.asMenuBarAppOSX) {
-  win.setShowInTaskbar(false);
-  menus.loadTrayIcon(win);
-}
+win.setShowInTaskbar(true);
 
 // Load the app menus
 menus.loadMenuBar(win);
@@ -76,8 +77,15 @@ menus.loadMenuBar(win);
 //}
 
 // Adjust the default behaviour of the main window
-windowBehaviour.set(win);
+//windowBehaviour.set(win);
 windowBehaviour.setNewWinPolicy(win);
+
+
+win.on('close', function () {
+    gui.App.closeAllWindows();
+    win.close(true);
+});
+
 
 // Add a context menu
 menus.injectContextMenu(win, window, document);
