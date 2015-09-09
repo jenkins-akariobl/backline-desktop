@@ -3,6 +3,7 @@
   "name": "Backline",
   "version": "4.4.0",
   "app-id": "com.drfirst.backline-desktop",
+  "user-agent": "Mozilla/5.0 (%osinfo) BacklineDesktop/%ver",
   "chromium-args": "",
   "window": {
     "width": 1100,
